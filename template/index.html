@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Template Task May Goldshtain | 2022</title>
+
+    <!--javascript & jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+    <!--styles-->
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/ptyp.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/topbar.css">
+    <link rel="stylesheet" href="./css/leftbar.css">
+    <link rel="stylesheet" href="./css/leftbar_icon-animations.css">
+    <link href="css/panel.css" rel="stylesheet" />
+
+    <!--jquery style-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+    <script>
+        $(function () { 
+            /*make the h1 added from the add panel draggble*/
+            $("#myh1").draggable();
+
+            /*make the h1 button from add panel draggble*/
+            $("#draggable2").draggable(
+                {
+                    helper: "clone",
+                    appendTo: ".editor-stage",
+                    revert: true,
+                    stop: function (e, ui) {
+                        $('#draggable2').draggable().data()["ui-draggable"].cancelHelperRemoval = true;
+                    }
+                }
+            );
+        }); 
+    </script> 
+</head> 
+<body>
+    <div class="editor-template" style="position: fixed;">
+        <div class="editor-topbar">
+            <div class="topbar-upper-deck">
+                <div class="topbar-left-seaction">
+                    <div class="wix-logo"><img src="./icons/topBar_logo.svg" alt="" /></div>
+                    <div class="tobar-menu">
+                        <div class="topbar-menu-item">Site</div>
+                        <div class="topbar-menu-item">Settings</div>
+                        <div class="topbar-menu-item">Dev Mode</div>
+                        <div class="topbar-menu-item">Help</div>
+                        <div class="topbar-menu-item" style="color: var(--P00);">Upgrade</div>
+                    </div>
+                </div>
+                <div class="topbar-right-seaction">
+                    <div class="tobar-menu">
+                        <div class="topbar-menu-item">Save</div>
+                        <div class="topbar-menu-item" style="color: var(--blue-main);">Preview</div>
+                        <div class="topbar-menu-item button-item">Publish</div>
+                    </div>
+                </div>
+            </div>
+            <div class="topbar-lower-deck">
+                <div class="topbar-left-seaction">
+                    <div class="page_selector">
+                        <div>Page: <span>Home</span></div>
+                        <img src="./icons/topBar_arrow-down.svg">
+                    </div>
+                    <div class="viewport_selector">
+                        <div class="viewport-item topbar-menu-item active icon-item">
+                            <img src="./icons/topBar_desktop.svg" alt="">
+                        </div>
+                        <div class="viewport-item topbar-menu-item icon-item">
+                            <img src="./icons/topBar_mobile.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="border"></div>
+                </div>
+                <div class="topbar-right-seaction">
+                    <div class="redo-undo-menu">
+                        <div class="redo-undo-item topbar-menu-item">
+                            <img src="./icons/topBar_undo.svg" alt="">
+                        </div>
+                        <div class="redo-undo-item topbar-menu-item">
+                            <img src="./icons/topBar_redo.svg" alt="">
+                        </div>
+                    </div>
+
+                    <div class="topbar-menu-item icon-item">
+                        <img src="./icons/topBar_zoom-mode.svg" alt="">
+                    </div>
+                    <div class="topbar-menu-item icon-text-item">
+                        <img src="./icons/topBar_tools.svg" alt="">
+                        Tools
+                    </div>
+                    <div class="topbar-menu-item icon-text-item">
+                        <img src="./icons/topBar_search.svg" alt="">
+                        Search
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-sidebar">
+                <div class="leftbar">
+                    <div class="leftbar-item" id="add-item">
+                        <div class="left-bar-icon"><img src="./icons/leftBar_add.svg"></div>
+                        <span class="leftbar-text"> Add </span>
+                    </div>
+                    <div class="leftbar-item">
+                        <div class="left-bar-icon left-bar-pages">
+                            <svg width="16px" height="20px" viewBox="0 0 16 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Editor_New-WS_Left-bar-icons_Pages" transform="translate(-5.000000, -3.000000)">
+                                        <rect fill-rule="nonzero" x="0" y="0" width="26" height="26"></rect>
+                                        <path id="back-page" d="M14.76,3 C15.5553814,3.00070021 16.3179306,3.31723005 16.88,3.88 L20.12,7.12 C20.6827699,7.68206943 20.9992998,8.4446186 21,9.24 L21,21 C21,22.1045695 20.1045695,23 19,23 L7,23 C5.8954305,23 5,22.1045695 5,21 L5,5 C5,3.8954305 5.8954305,3 7,3 L14.76,3 Z" fill="currentColor"></path>
+                                        <rect class="elm-transparent" id="page-line-1" fill="currentColor" x="9" y="10" width="8" height="2" rx="0.5"></rect>
+                                        <rect class="elm-transparent" id="page-line-2" fill="currentColor" x="9" y="15" width="8" height="2" rx="0.5"></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="leftbar-text"> Pages </span>
+                    </div>
+                    <div class="leftbar-item">
+                        <div class="left-bar-icon left-bar-theme-manager">
+                            <svg width="23px" height="22px" viewBox="0 0 23 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <polygon id="path-1" points="0.823523641 0.1351 14.267 0.1351 14.267 21 0.823523641 21"></polygon>
+                                </defs>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Editor_New-WS_Left-bar-icons_Theme-Manager" transform="translate(-1.000000, -3.000000)">
+                                        <rect fill-rule="nonzero" x="0" y="0" width="26" height="26"></rect>
+                                        <path id="theme-a-letter" d="M9.0003,3.9937 L3.0003,17.9927 L6.0003,17.9927 L7.2853,14.9937 L13.7143,14.9937 L15.0003,17.9927 L18.0003,17.9927 L12.0003,3.9937 L9.0003,3.9937 Z M10.5003,7.4927 L12.4283,11.9927 L8.5723,11.9927 L10.5003,7.4927 Z" fill="currentColor"></path>
+                                        <g id="theme-drop" transform="translate(11.000000, 3.664900)">
+                                            <g>
+                                                <clipPath class="elm-transparent" id="mask-2" fill="currentColor">
+                                                    <use xlink:href="#path-1"></use>
+                                                </clipPath>
+                                                <path class="elm-transparent" id="theme-drop-stroke" d="M7.5457,0.1351 L5.0567,4.7541 L1.6357,11.1041 C0.2187,13.7341 0.6867,16.9211 2.7987,19.0341 C4.0667,20.3021 5.7527,21.0001 7.5457,21.0001 C9.3377,21.0001 11.0247,20.3021 12.2917,19.0341 C14.4047,16.9211 14.8717,13.7341 13.4547,11.1041 L10.0337,4.7541 L7.5457,0.1351 Z M7.5457,6.0941 L10.9667,12.4451 C11.7807,13.9551 11.5067,15.8221 10.2937,17.0351 C9.5347,17.7941 8.5397,18.1741 7.5457,18.1741 C6.5507,18.1741 5.5567,17.7941 4.7977,17.0351 C3.5837,15.8221 3.3107,13.9551 4.1247,12.4451 L7.5457,6.0941 L7.5457,6.0941 Z" fill="currentColor" clippath="url(#mask-2)"></path>
+                                            </g>
+                                            <path id="theme-drop-fill" d="M11.8728,11.8314 L7.5458,3.7964 L3.2178,11.8304 C2.1948,13.7274 2.5448,16.1154 4.0688,17.6394 C5.0268,18.5984 6.2858,19.0764 7.5458,19.0764 C8.8048,19.0764 10.0628,18.5984 11.0208,17.6394 C12.5458,16.1154 12.8948,13.7274 11.8728,11.8314" fill="currentColor"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="leftbar-text"> Theme Manager </span>
+                    </div>
+                    <div class="leftbar-item">
+                        <div class="left-bar-icon left-bar-background">
+                            <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Editor_New-WS_Left-bar-icons_Background">
+                                        <rect fill-rule="nonzero" x="0" y="0" width="26" height="26"></rect>
+                                        <path stroke="currentColor" ;="" d="M18.5,19 L7.5,19 C7.224,19 7,18.776 7,18.5 L7,7.5 C7,7.224 7.224,7 7.5,7 L18.5,7 C18.776,7 19,7.224 19,7.5 L19,18.5 C19,18.776 18.776,19 18.5,19" fill="currentColor"></path>
+                                        <polygon class="elm-transparent" id="background-up" fill="currentColor" points="-1.8611 15.9998 -8.0001 9.8608 10.4999 -8.6392 16.6389 -2.5002"></polygon>
+                                        <polygon class="elm-transparent" id="background-down" fill="currentColor" points="10.1389 27.9998 3.9999 21.8608 22.4999 3.3608 28.6389 9.4998"></polygon>
+                                        <g transform="translate(4.000000, 4.000000)" fill="currentColor">
+                                            <path d="M16,0 C17.104,0 18,0.896 18,2 L18,16 C18,17.104 17.104,18 16,18 L2,18 C0.896,18 0,17.104 0,16 L0,2 C0,0.896 0.896,0 2,0 L16,0 Z M14.5,3 L3.5,3 C3.224,3 3,3.224 3,3.5 L3,3.5 L3,14.5 C3,14.776 3.224,15 3.5,15 L3.5,15 L14.5,15 C14.776,15 15,14.776 15,14.5 L15,14.5 L15,3.5 C15,3.224 14.776,3 14.5,3 L14.5,3 Z"></path>
+                                        </g>
+                                        <path class="elm-transparent" d="M26,0 L26,26 L0,26 L0,0 L26,0 Z M20,4 L6,4 C4.896,4 4,4.896 4,6 L4,6 L4,20 C4,21.104 4.896,22 6,22 L6,22 L20,22 C21.104,22 22,21.104 22,20 L22,20 L22,6 C22,4.896 21.104,4 20,4 L20,4 Z" fill="currentColor"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="leftbar-text"> Background </span>
+                    </div>
+                    <div class="leftbar-item">
+                        <div class="left-bar-icon left-bar-media-manager">
+                            <svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <polygon id="path-1" points="0 0 18 0 18 3 0 3"></polygon>
+                                    <polygon id="path-3" points="0 0 18 0 18 3 0 3"></polygon>
+                                </defs>
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Editor_New-WS_Left-bar-icons_Media-Manager">
+                                        <polygon fill-rule="nonzero" points="0 0 26 0 26 13.0161133 26 26 0 26"></polygon>
+                                        <path id="media-back" d="M21,5 L5,5 C3.8954305,5 3,5.8954305 3,7 L3,19 C3,20.1045695 3.8954305,21 5,21 L21,21 C22.1045695,21 23,20.1045695 23,19 L23,7 C23,5.8954305 22.1045695,5 21,5 Z" fill="currentColor" fill-rule="nonzero"></path>
+                                        <path class="elm-transparent" id="media-moon" d="M7.5,8 C8.32842712,8 9,8.67157288 9,9.5 C9,10.3284271 8.32842712,11 7.5,11 C6.67157288,11 6,10.3284271 6,9.5 C6,8.67157288 6.67157288,8 7.5,8 Z" fill="currentColor" fill-rule="nonzero"></path>
+                                        <path class="elm-transparent" id="media-mountain" d="M9.09949494,14 L13.9483802,14 L13.9483802,14 L17.0994949,14 C18.7563492,14 20.0994949,15.3431458 20.0994949,17 L20.0994949,25 C20.0994949,26.6568542 18.7563492,28 17.0994949,28 L9.09949494,28 C7.44264069,28 6.09949494,26.6568542 6.09949494,25 L6.09949494,17 C6.09949494,15.3431458 7.44264069,14 9.09949494,14 Z" fill="currentColor"></path>
+                                        <g transform="translate(4.000000, 18.000000)">
+                                            <mask id="mask-4" fill="white">
+                                                <use xlink:href="#path-3"></use>
+                                            </mask>
+                                            <g id="Clip-2"></g>
+                                            <path id="media-back-border" d="M17,3 L1,3 C-0.104,3 -1,2.104 -1,1 L-1,-11 C-1,-12.104 -0.104,-13 1,-13 L17,-13 C18.104,-13 19,-12.104 19,-11 L19,1 C19,2.104 18.104,3 17,3" fill="currentColor" mask="url(#mask-4)"></path>
+                                        </g>
+                                        <rect class="elm-transparent" id="media-mountain-bottom" fill="currentColor" x="2" y="21" width="22" height="5"></rect>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="leftbar-text"> Media </span>
+                    </div>
+                    <div class="leftbar-item">
+                        <div class="left-bar-icon left-bar-app-market">
+                            <svg width="18px" height="18px" style="overflow:unset" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Editor_New-WS_Left-bar-icons_App-Market" transform="translate(-4.000000, -4.000000)" fill-rule="nonzero">
+                                        <rect x="0" y="0" width="26" height="26"></rect>
+                                        <path id="square-3" d="M9.5,15 C10.3284271,15 11,15.6715729 11,16.5 L11,20.5 C11,21.3284271 10.3284271,22 9.5,22 L5.5,22 C4.67157288,22 4,21.3284271 4,20.5 L4,16.5 C4,15.6715729 4.67157288,15 5.5,15 L9.5,15 Z" fill="currentColor"></path>
+                                        <path id="square-3-back" d="M9.5,15 C10.3284271,15 11,15.6715729 11,16.5 L11,20.5 C11,21.3284271 10.3284271,22 9.5,22 L5.5,22 C4.67157288,22 4,21.3284271 4,20.5 L4,16.5 C4,15.6715729 4.67157288,15 5.5,15 L9.5,15 Z" fill="currentColor"></path>
+                                        <path id="square-4" d="M20.5,15 C21.3284271,15 22,15.6715729 22,16.5 L22,20.5 C22,21.3284271 21.3284271,22 20.5,22 L16.5,22 C15.6715729,22 15,21.3284271 15,20.5 L15,16.5 C15,15.6715729 15.6715729,15 16.5,15 L20.5,15 Z" fill="currentColor"></path>
+                                        <path id="square-1" d="M9.5,4 C10.3284271,4 11,4.67157288 11,5.5 L11,9.5 C11,10.3284271 10.3284271,11 9.5,11 L5.5,11 C4.67157288,11 4,10.3284271 4,9.5 L4,5.5 C4,4.67157288 4.67157288,4 5.5,4 L9.5,4 Z" fill="currentColor"></path>
+                                        <path id="square-1-back" d="M9.5,4 C10.3284271,4 11,4.67157288 11,5.5 L11,9.5 C11,10.3284271 10.3284271,11 9.5,11 L5.5,11 C4.67157288,11 4,10.3284271 4,9.5 L4,5.5 C4,4.67157288 4.67157288,4 5.5,4 L9.5,4 Z" fill="currentColor"></path>
+                                        <path id="square-2" d="M20.5,4 C21.3284271,4 22,4.67157288 22,5.5 L22,9.5 C22,10.3284271 21.3284271,11 20.5,11 L16.5,11 C15.6715729,11 15,10.3284271 15,9.5 L15,5.5 C15,4.67157288 15.6715729,4 16.5,4 L20.5,4 Z" fill="currentColor"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="leftbar-text"> App Market </span>
+                    </div>
+                </div>
+
+
+                <div class="leftbar-open" id="leftbar-open">
+                    <!--header-->
+                    <div class="panel-header">
+                        <div class="panel-header-title">Add to Site</div>
+
+                        <button class="btn-header btn-search">
+                            <svg width="29" height="29" viewBox="0 0 29 29" class="symbol symbol-editorSearchButton_NewWorkspace"><path fill="#17191C" d="M12.5 6a6.5 6.5 0 014.936 10.729l3.918 3.917-.708.708-3.917-3.918A6.5 6.5 0 1112.5 6zm0 1a5.5 5.5 0 100 11 5.5 5.5 0 000-11z"></path></svg>
+                            <span>Search</span>
+                        </button>
+
+                        <button class="btn-header btn-help">
+                            <svg width="7" height="13" viewBox="0 0 7 13" xmlns="http://www.w3.org/2000/svg"><defs><path id="a" d="M0 .946h7v8.626H0V.946z"></path><path id="c" d="M0 13.055h7V1H0z"></path></defs><g transform="translate(0 -1)" fill="none" fill-rule="evenodd"><g transform="translate(0 .054)"><mask id="b" fill="#fff"><use xlink:href="#a"></use></mask><path d="M6.008 1.754a3.242 3.242 0 0 0-1.067-.603A4.004 4.004 0 0 0 3.643.945c-.595 0-1.127.094-1.595.281a3.23 3.23 0 0 0-1.175.786C.56 2.348 0 3.15 0 4.848h.931c-.01 0 .04-.835.15-1.199.11-.364.275-.685.495-.955.221-.27.5-.484.835-.638.336-.155.73-.233 1.182-.233.32 0 .623.055.91.165.286.11.537.262.752.454a2.126 2.126 0 0 1 .703 1.612c0 .43-.102.822-.305 1.174a4.12 4.12 0 0 1-.77.96c-.353.32-.655.601-.893.86-.49.531-.89.937-.89 2.524h.923c.011 0 .033-.659.066-.923.033-.265.1-.377.2-.57.098-.193.247-.324.446-.512.198-.187.473-.428.826-.78A6.363 6.363 0 0 0 6.595 5.56c.27-.43.404-.946.404-1.564a3.02 3.02 0 0 0-.263-1.278c-.177-.38-.42-.7-.728-.965" fill="#000" mask="url(#b)"></path></g><mask id="d" fill="#fff"><use xlink:href="#c"></use></mask><path fill="#000" mask="url(#d)" d="M3.101 13.055h.923V11.25h-.923z"></path></g></svg>
+                        </button>
+
+                        <button class="btn-header btn-close" id="close-panel">
+                            <svg width="25" height="25" viewBox="0 0 25 25"><path d="M11.793 12.5L8.146 8.854 7.793 8.5l.707-.707.354.353 3.646 3.647 3.646-3.647.354-.353.707.707-.353.354-3.647 3.646 3.647 3.646.353.354-.707.707-.354-.353-3.646-3.647-3.646 3.647-.354.353-.707-.707.353-.354 3.647-3.646z"></path></svg>
+                        </button>
+
+                    </div>
+
+                    <!--bottom-->
+                    <div class="panel-bottom">
+
+                        <!--categories-list-->
+                        <div class="categories-list">
+                            <ul class="categories-list-ul">
+
+                                <li class="categories-list-item">
+                                    <a id="categories-strip" href="#">Strip</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul" id="strip-ul">
+                                        <li>
+                                            <a id="a_recently" class="hash" href="#recently" onmouseover="click();">
+                                                Recently Used
+                                                <img src="images/on-time-icon-19.jpg" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="a_classic" class="hash" href="#classic" onmouseover="click();">Classic</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_featured" class="hash" href="#featured" onmouseover="click();">Featured</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_about" class="hash" href="#about" onmouseover="click();">About</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_services" class="hash" href="#services" onmouseover="click();">Services</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_contact" class="hash" href="#contact" onmouseover="click();">Contact</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_welcome" class="hash" href="#welcome" onmouseover="click();">Welcome</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_testimonals" class="hash" href="#testimonals" onmouseover="click();">Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_team" class="hash" href="#team" onmouseover="click();">Team</a>
+                                        </li>
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors" id="strip_anchors">
+
+                                        <!--recently used-->
+                                        <section class="anchor" id="recently">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Recently Used</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="about_images" style="background-position: 0px -346px;"></div>
+                                                <div class="featured_images" style="background-position: 0px -208px;"></div>
+
+                                            </div>
+                                        </section>
+
+
+                                        <!--classic anchor-->
+                                        <section class="anchor" id="classic">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Classic</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="strips_images" style="background-position: 0px 0px;">
+                                                </div>
+                                                <div class="strips_images" style="background-position: 0px -120px;">
+                                                </div>
+                                                <div class="strips_images" style="background-position: 0px -240px;">
+                                                </div>
+                                                <div class="strips_images" style="background-position: 0px -360px;">
+                                                </div>
+                                            </div>
+                                        </section>
+
+                                        <!--featured anchor-->
+                                        <section class="anchor" id="featured">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Featured</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="featured_images" style="background-position: 0px 0px;"></div>
+                                                <div class="featured_images" style="background-position: 0px -208px;"></div>
+                                                <div class="featured_images" style="background-position: 0px -420px;"></div>
+                                                <div class="featured_images" style="background-position: 0px -630px;"></div>
+                                            </div>
+                                        </section>
+
+                                        <!--about anchor-->
+                                        <section class="anchor" id="about">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">About</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="about_images" style="background-position: 0px 0px;"></div>
+                                                <div class="about_images" style="background-position: 0px -170px;"></div>
+                                                <div class="about_images" style="background-position: 0px -346px;"></div>
+                                                <div class="about_images" style="background-position: 0px -508px;"></div>
+                                            </div>
+                                        </section>
+
+                                        <!--services anchor-->
+                                        <section class="anchor" id="services">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Services</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="services_images" style="background-position: 0px 0px;"></div>
+                                                <div class="services_images" style="background-position: 0px -108px;"></div>
+                                                <div class="services_images" style="background-position: 0px -250px;"></div>
+                                                <div class="services_images" style="background-position: 0px -380px;"></div>
+                                            </div>
+                                        </section>
+
+
+                                        <!--contact anchor-->
+                                        <section class="anchor" id="contact">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Contact</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="contact_images" style="background-position: 0px 0px;"></div>
+                                                <div class="contact_images" style="background-position: 0px -171px;"></div>
+                                                <div class="contact_images" style="background-position: 0px -341px;"></div>
+                                                <div class="contact_images" style="background-position: 0px -473px;"></div>
+                                            </div>
+                                        </section>
+
+                                        <!--welcome anchor-->
+                                        <section class="anchor" id="welcome">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Welcome</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="welcome_images" style="background-position: 0px 0px;"></div>
+                                                <div class="welcome_images" style="background-position: 0px -190px;"></div>
+                                                <div class="welcome_images" style="background-position: 0px -376px;"></div>
+                                                <div class="welcome_images" style="background-position: 0px -556px;"></div>
+                                            </div>
+                                        </section>
+
+                                        <!--testimonals anchor-->
+                                        <section class="anchor" id="testimonals">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Testimonals</div>
+                                                <svg data-tooltip="Classic Strips" width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="testimonals_images" style="background-position: 0px 0px;"></div>
+                                                <div class="testimonals_images" style="background-position: 0px -130px;"></div>
+                                                <div class="testimonals_images" style="background-position: 0px -303px;"></div>
+                                                <div class="testimonals_images" style="background-position: 0px -469px;"></div>
+                                            </div>
+                                        </section>
+
+                                        <!--team anchor-->
+                                        <section class="anchor" id="team">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Team</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="team_images" style="background-position: 0px 0px;"></div>
+                                                <div class="team_images" style="background-position: 0px -177px;"></div>
+                                                <div class="team_images" style="background-position: 0px -319px;"></div>
+                                                <div class="team_images" style="background-position: 0px -462px;"></div>
+                                            </div>
+                                        </section>
+                                    </div>
+
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Text</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a id="a_recently_text" class="hash" href="#recently_text" onmouseover="click();">
+                                                Recently Used
+                                                <img src="images/on-time-icon-19.jpg" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a id="a_themed_text" class="hash" href="#themed_text" onmouseover="click();">Themed Text</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_titles_anchors" class="hash" href="#titles_anchors" onmouseover="click();">Titles</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_paragraphs_anchors" class="hash" href="#paragraphs_anchors" onmouseover="click();">Paragraphs</a>
+                                        </li>
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors" id="text_anchors">
+
+
+                                        <!--recently used-->
+                                        <section class="anchor" id="recently_text">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Recently Used</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+
+                                                <div class="collapsible_images" style="background-position: 0px 0px;"></div>
+                                                <div class="titles_images" style="background-position: 0px -101px;"></div>
+                                                <div class="text_elements">
+                                                    <h3>Add Heading 3</h3>
+                                                </div>
+
+                                            </div>
+                                        </section>
+
+
+                                        <!--themed_text anchor-->
+                                        <section class="anchor" id="themed_text">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Themed Text</div>
+                                                <svg width="19" height="19" viewBox="0 0 19 19" class="symbol symbol-info_video_tooltip_icon"><g id="Page-1" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="info_video_tooltip_icon"><path id="Fill-1" d="M18 12.382l-2.553-1.276L14 10.382V13.936c0 .587-.449 1.064-1 1.064H6c-2.757 0-5-2.243-5-5V8c0-2.757 2.243-5 5-5h7c.551 0 1 .478 1 1.065v3.518l1.43-.68L18 5.68v6.702zM15 6V4.065C15 2.924 14.104 2 13 2H6a6 6 0 00-6 6v2a6 6 0 006 6h7c1.104 0 2-.924 2-2.064V12l4 2V4.097L15 6z"></path><path id="Fill-4" d="M5 8h6V6H5z"></path></g></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div id="draggable2" onclick="add_to_stage(); resize();" class="text_elements">
+                                                    <h1>Add Heading 1</h1>
+                                                </div>
+                                                <div class="text_elements tooltip">
+                                                    <h2>Add Heading 2</h2>
+                                                    <span class="tooltiptext">To add, just drag and drop</span>
+                                                </div>
+                                                <div class="text_elements tooltip">
+                                                    <h3>Add Heading 3</h3>
+                                                    <span class="tooltiptext">To add, just drag and drop</span>
+                                                </div>
+                                                <div class="text_elements tooltip">
+                                                    <h4>Add Heading 4</h4>
+                                                    <span class="tooltiptext">To add, just drag and drop</span>
+                                                </div>
+                                                <div class="text_elements tooltip">
+                                                    <h5>Add Heading 5</h5>
+                                                    <span class="tooltiptext">To add, just drag and drop</span>
+                                                </div>
+                                                <div class="text_elements tooltip">
+                                                    <h6>Add Heading 6</h6>
+                                                    <span class="tooltiptext">To add, just drag and drop</span>
+                                                </div>
+                                                <p style="font-size: 20px;" class="text_elements">I'm a paragraph. Click here to add your own text and edit me. It's easy.</p>
+                                                <p style="font-size: 18px;" class="text_elements">I'm a paragraph. Click here to add your own text and edit me. It's easy.</p>
+                                                <p style="font-size: 16px;" class="text_elements">I'm a paragraph. Click here to add your own text and edit me. It's easy.</p>
+                                            </div>
+                                        </section>
+
+                                        <!--titles anchor-->
+                                        <section class="anchor" id="titles_anchors">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Titles</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="titles_images" style="background-position: 0px 0px;"></div>
+                                                <div class="titles_images" style="background-position: 0px -56px;"></div>
+                                                <div class="titles_images" style="background-position: 0px -101px;"></div>
+                                                <div class="titles_images" style="background-position: 0px -137px;"></div>
+                                            </div>
+                                        </section>
+
+
+                                        <!--paragraphs anchor-->
+                                        <section class="anchor" id="paragraphs_anchors">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Paragraphs</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="paragraphs_images" style="background-position: 0px 0px;"></div>
+                                                <div class="paragraphs_images" style="background-position: 0px -95px;"></div>
+                                                <div class="paragraphs_images" style="background-position: 0px -205px;"></div>
+                                            </div>
+
+
+                                            <!--collapsible text anchor-->
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Collapsible Text</div>
+                                                <svg width="18" height="18" preserveAspectRatio="xMidYMid" viewBox="1.5 1.5 18 18" class="symbol symbol-infoIcon"><g id="infoIconSvg"><circle cx="10.5" cy="10.5" r="8" fill="transparent"></circle><path id="path-1" fill-rule="evenodd" d="M10.5 19.5a9 9 0 01-9-9 9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9zm-8-9c0 4.411 3.589 8 8 8s8-3.589 8-8-3.589-8-8-8-8 3.589-8 8zm10 5h-4l1-2v-3h-1l1-2h2v5l1 2zm-3-10h2v2h-2v-2z"></path></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="collapsible_images" style="background-position: 0px 0px;"></div>
+                                                <div class="collapsible_images" style="background-position: 0px -108px;"></div>
+                                                <div class="collapsible_images" style="background-position: 0px -248px;"></div>
+                                            </div> 
+                                        </section> 
+                                    </div>
+
+
+
+
+                                </li>
+                                <li class="categories-list-item">
+                                    <a href="#">Image</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a id="a_my_uploads" class="hash" href="#my_uploads" onmouseover="click();">My Uploads</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_image_collections" class="hash" href="#image_collections" onmouseover="click();">Image Coolections</a>
+                                        </li>
+                                        <li>
+                                            <a id="a_my_social" class="hash" href="#my_social" onmouseover="click();">My Social Images</a>
+                                        </li>
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors" id="images_anchors" style="left: 214%;">
+
+                                        <!--my_uploads anchor-->
+                                        <section class="anchor" id="my_uploads">
+
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">My Uploads</div>
+                                                <svg width="19" height="19" viewBox="0 0 19 19" class="symbol symbol-info_video_tooltip_icon"><g id="Page-1" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="info_video_tooltip_icon"><path id="Fill-1" d="M18 12.382l-2.553-1.276L14 10.382V13.936c0 .587-.449 1.064-1 1.064H6c-2.757 0-5-2.243-5-5V8c0-2.757 2.243-5 5-5h7c.551 0 1 .478 1 1.065v3.518l1.43-.68L18 5.68v6.702zM15 6V4.065C15 2.924 14.104 2 13 2H6a6 6 0 00-6 6v2a6 6 0 006 6h7c1.104 0 2-.924 2-2.064V12l4 2V4.097L15 6z"></path><path id="Fill-4" d="M5 8h6V6H5z"></path></g></g></svg>
+                                            </div>
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_upload">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        My Image Uploads
+                                                        <span class="description_image">
+                                                            Upload  and add your own images to your site.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </section>
+
+
+
+                                        <!--Image Collections anchor-->
+                                        <section class="anchor" id="image_collections">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">Image Collections</div>
+                                                <svg width="19" height="19" viewBox="0 0 19 19" class="symbol symbol-info_video_tooltip_icon"><g id="Page-1" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="info_video_tooltip_icon"><path id="Fill-1" d="M18 12.382l-2.553-1.276L14 10.382V13.936c0 .587-.449 1.064-1 1.064H6c-2.757 0-5-2.243-5-5V8c0-2.757 2.243-5 5-5h7c.551 0 1 .478 1 1.065v3.518l1.43-.68L18 5.68v6.702zM15 6V4.065C15 2.924 14.104 2 13 2H6a6 6 0 00-6 6v2a6 6 0 006 6h7c1.104 0 2-.924 2-2.064V12l4 2V4.097L15 6z"></path><path id="Fill-4" d="M5 8h6V6H5z"></path></g></g></svg>
+                                            </div>
+
+                                            <!-----1----->
+                                            <div class="anchor_elements">
+                                                <!-----1----->
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_free_wix_images">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        Free Wix Images
+                                                        <span class="description_image">
+                                                            Beautiful free images to use on your site.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-----2----->
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_free_wix_collections">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        Free Wix Illustrations
+                                                        <span class="description_image">
+                                                            Stunning illustrations designed for your site.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-----3----->
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_stock">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        Stock Images
+                                                        <span class="description_image">
+                                                            High quality images to purchase and own.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                <!--</div>-->
+                                            </div> 
+                                        </section>
+
+
+
+
+                                        <!--My Social anchor-->
+                                        <section class="anchor" id="my_social">
+                                            <div class="top-anchor">
+                                                <div class="title-anchor">My Social Images</div>
+                                                <svg width="19" height="19" viewBox="0 0 19 19" class="symbol symbol-info_video_tooltip_icon"><g id="Page-1" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="info_video_tooltip_icon"><path id="Fill-1" d="M18 12.382l-2.553-1.276L14 10.382V13.936c0 .587-.449 1.064-1 1.064H6c-2.757 0-5-2.243-5-5V8c0-2.757 2.243-5 5-5h7c.551 0 1 .478 1 1.065v3.518l1.43-.68L18 5.68v6.702zM15 6V4.065C15 2.924 14.104 2 13 2H6a6 6 0 00-6 6v2a6 6 0 006 6h7c1.104 0 2-.924 2-2.064V12l4 2V4.097L15 6z"></path><path id="Fill-4" d="M5 8h6V6H5z"></path></g></g></svg>
+                                            </div>
+
+                                            <!-----1----->
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_facebook">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        My Facebook
+                                                        <span class="description_image">
+                                                            Use images from your Facebook on your site.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-----2----->
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_instagram">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        My Instagram
+                                                        <span class="description_image">
+                                                            Add beautiful images from your Instagram.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-----3----->
+                                            <div class="anchor_elements">
+                                                <div class="images_elements">
+                                                    <div class="image_image" id="image_flickr">
+                                                    </div>
+                                                    <div class="image_title">
+                                                        My Flickr
+                                                        <span class="description_image">
+                                                            Add your Flickr images to your site.
+                                                        </span>
+                                                    </div>
+                                                    <div class="image_circle">
+                                                        <svg width="27" height="27" viewBox="0 0 27 27" class="symbol symbol-arrowWithStates"><circle class="combined-Shape" cx="13.5" cy="13.5" r="12.5" fill="#CBCBCB" class="st0"></circle><path id="Path-2" fill="#3899EC" d="M15.331 13.5l-3.705 4.168.748.664 4.295-4.832-4.295-4.832-.748.664z" class="st1"></path></svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+
+
+                                    </div>
+                                </li>
+
+                                <li class="categories-list-item">
+                                    <a href="#">Button</a>
+                                    <!--sub categories-list-->
+
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Buttons</span>
+                                            <a class="hash" href="#">Themed Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Text & Icon Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Icon Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Image Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Image Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Document Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Document Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Document Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Upload Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">iTunes Button</a>
+                                            <hr class="hr_class">
+                                        </li>
+
+
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Payment Buttons</span>
+                                            <a class="hash" href="#">Pay Buttons</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">PayPal Buttons</a>
+                                        </li>
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Gallery</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">Recommended</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Pro Galleries</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Grid Galleries</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Slider Galleries</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">More Galleries</a>
+                                        </li>
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+
+                                </li>
+
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Decorative</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Shapes</span>
+                                            <a class="hash" href="#">My Lines</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Themed Lines</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Basic Shapes</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Arrows</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="hash" href="#">Horizontal Lines</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Vertical Lines</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Vector Art</span>
+                                            <a class="hash" href="#">Featured</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Icons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Animals & Nature</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Logos & Badges</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Characters</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">video</span>
+                                            <a class="hash" href="#">VideoBox</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Video Mask</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Transparent Video</a>
+                                        </li>
+
+
+                                    </ul>
+
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Interactive</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul" style=" width: 110%;">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Slideshows</span>
+                                            <a class="hash" href="#">Full Width Slideshows</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Box Slideshows</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Lightboxes</span>
+                                            <a class="hash" href="#">Featured</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Welcome</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Subscribe</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Promotion</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Contact</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Boxes</span>
+                                            <a class="hash" href="#">Hover Boxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Tabs</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Repeaters</span>
+                                            <a class="hash" href="#">Hover Repeaters</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Indicators</span>
+                                            <a class="hash" href="#">Pagination Bar</a>
+                                        </li>
+                                    </ul>
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Box</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">My Boxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Themed Boxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Container Boxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Hover Boxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Tabs</a>
+                                        </li>
+                                    </ul>
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">List</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">Repeaters</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Hover Repeaters</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Blank Repeaters</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Tables</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">  Video & Music</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul" style=" width: 104%;">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Video</span>
+                                            <a class="hash" href="#">Single Video Players</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Wix Video</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">VideoBox</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Video Mask</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Transparent Video</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Music</span>
+                                            <a class="hash" href="#">Audio Players</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Wix Music</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">SoundCloud Player</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Spotify Player</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">iTunes Button</a>
+                                        </li>
+
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Menu & Anchor</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Menus</span>
+                                            <a class="hash" href="#">Themed Menus</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Horizontal Menus</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Vertical Menus</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Anchors</span>
+                                            <a class="hash" href="#">Anchor</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Anchor Menus</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Search</span>
+                                            <a class="hash" href="#">Site Search</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+
+                                </li>
+                                <li class="categories-list-item">
+                                    <a href="#">Social</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Social</span>
+                                            <a class="hash" href="#">Social Bar</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Facebook</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Twitter</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Pinterest</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">VK</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">LINE</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Music & Video</span>
+                                            <a class="hash" href="#">YouTube</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#"> Contant & Forms</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Forms</span>
+                                            <a class="hash" href="#">Contact</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Registration</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Donation</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Application</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Feedback</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Request</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Waiver</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Subscribe</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Google Maps</span>
+                                            <a class="hash" href="#">Maps</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Full Width Maps</a>
+                                            <hr class="hr_class">
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Chat</span>
+                                            <a class="hash" href="#">Wix Chat</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">LINE</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+
+                                </li>
+                                <li class="categories-list-item">
+                                    <a href="#"> Payments</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Payment Buttons</span>
+                                            <a class="hash" href="#">Pay Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">PayPal Buttons</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Payment Forms</span>
+                                            <a class="hash" href="#">Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Donation</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Pricing Plans</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Store</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+                                <li class="categories-list-item">
+                                    <a href="#">Embed Code</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul" style=" width: 103%;">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Popular</span>
+                                            <a class="hash" href="#">Popular Embeds</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Video</span>
+                                            <a class="hash" href="#">Single Video Players</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">ADVANCED</span>
+                                            <a class="hash" href="#">Marketing Tools</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Velo Dev Mode</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Animation</span>
+                                            <a class="hash" href="#">Lottie</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">input</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Text</span>
+                                            <a class="hash" href="#">Text Input</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Text Box</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Rich Text</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Selection</span>
+                                            <a class="hash" href="#">Radio Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Checkboxes</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Dropdown</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Selection Tags</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Date & Time</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Slider</a>
+                                            <hr class="hr_class" />
+                                        </li>
+                                        <li>
+                                            <span class="sub-categories-list-ul-title">Advanced</span>
+                                            <a class="hash" href="#">Upload Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Ratings</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Address Input</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Switch</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Signature Input</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Content Manager</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">Presets</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Collections</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Datasets</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Elements</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+
+
+                                </li>
+
+                                <li class="categories-list-item">
+                                    <a href="#">Blog</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+                                <li class="categories-list-item">
+                                    <a href="#">Store</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Booking</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Events</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">Community</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">Members</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Forum</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Groups</a>
+                                        </li>
+                                        <li>
+                                            <a class="hash" href="#">Online Programs</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+
+
+                                <li class="categories-list-item">
+                                    <a href="#">My Designs</a>
+                                    <!--sub categories-list-->
+                                    <ul class="sub-categories-list-ul">
+                                        <li>
+                                            <a class="hash" href="#">My Designs</a>
+                                        </li>
+                                    </ul>
+
+                                    <!--the anchors-->
+                                    <div class="the-anchors">
+                                        <section class="anchor">
+                                        </section>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="editor-stage">
+
+                <div class="mission_tooltip">
+                    <span class="mission_tooltiptext">
+                        <button class="btn-header btn-close" id="tooltip-close">
+                            <svg width="25" height="25" viewBox="0 0 25 25"><path d="M11.793 12.5L8.146 8.854 7.793 8.5l.707-.707.354.353 3.646 3.647 3.646-3.647.354-.353.707.707-.353.354-3.647 3.646 3.647 3.646.353.354-.707.707-.354-.353-3.646-3.647-3.646 3.647-.354.353-.707-.707.353-.354 3.647-3.646z"></path></svg>
+                        </button>
+                        <img src="images/telescope-icon-png-19.jpg" />
+                        <span style="display: block; margin: 0px auto;"><strong>Save Time</strong></span>
+                        <br role="presentation" />
+                        Duplicating multiple elements?
+                        <br role="presentation" />
+                        It’s time to get to know the repeater <a class="tooltip_link" href="https://support.wix.com/en/article/wix-editor-adding-and-managing-repeaters-lists-grids" target="_blank">Read More...</a>
+                    </span>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--javascript-->
+    <script src="js/main.js"></script>
+
+    <!--<script>
+        function listenForDoubleClick(element) {
+            element.contentEditable = true;
+            setTimeout(function () {
+                if (document.activeElement !== element) {
+                    element.contentEditable = false;
+                }
+            }, 300);
+        }</script>-->
+
+</body>
+</html>
